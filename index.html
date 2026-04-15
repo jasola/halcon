@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grupo Halcón — La Elección de Futuro</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0f1f3d;
+  --navy-mid: #1a3260;
+  --navy-light: #2a4a8a;
+  --gold: #c8973a;
+  --gold-light: #e8b95a;
+  --cream: #f5f0e8;
+  --cream-dark: #ede6d8;
+  --slate: #4a5568;
+  --slate-light: #718096;
+  --white: #ffffff;
+  --danger: #c0392b;
+  --success: #1a6b3c;
+  --warn: #b7770d;
+  --border: rgba(15,31,61,0.12);
+  --shadow: 0 4px 24px rgba(15,31,61,0.10);
+  --shadow-lg: 0 12px 48px rgba(15,31,61,0.16);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--cream);
+  color: var(--navy);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 56px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.nav-links {
+  display: flex; gap: 0.25rem;
+  list-style: none;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.7rem;
+  border-radius: 3px;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+.nav-links a:hover { color: var(--gold-light); background: rgba(255,255,255,0.06); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: var(--navy);
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 7rem 6rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 55%; height: 100%;
+  background: linear-gradient(135deg, transparent 0%, rgba(200,151,58,0.06) 50%, rgba(200,151,58,0.12) 100%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: -2px; left: 0; right: 0; height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--cream));
+  pointer-events: none;
+}
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  max-width: 700px;
+  margin-bottom: 0.4rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.4s forwards;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.5);
+  font-weight: 300;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.6s forwards;
+}
+.hero-meta {
+  display: flex; gap: 3rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.8s forwards;
+}
+.hero-meta-item { }
+.hero-meta-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.hero-meta-value {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.75);
+  font-weight: 300;
+}
+.hero-divider {
+  width: 60px; height: 2px;
+  background: var(--gold);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.5s forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* SECTIONS */
+.section {
+  padding: 5rem 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section + .section { padding-top: 0; }
+
+.section-full {
+  padding: 5rem 0;
+  background: var(--navy);
+}
+.section-full .section { color: var(--white); }
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--gold);
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.section-full .section-title { color: var(--white); }
+
+.section-intro {
+  font-size: 1.05rem;
+  color: var(--slate);
+  max-width: 680px;
+  margin-bottom: 3rem;
+  font-weight: 300;
+}
+.section-full .section-intro { color: rgba(255,255,255,0.6); }
+
+/* CARDS */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* SITUACIÓN GRID */
+.situation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+.situation-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.75rem;
+  position: relative;
+  box-shadow: var(--shadow);
+}
+.situation-card.highlight {
+  border-color: var(--gold);
+  border-left: 4px solid var(--gold);
+}
+.situation-card.full-width {
+  grid-column: 1 / -1;
+}
+.scard-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--cream-dark);
+  position: absolute;
+  top: 1rem; right: 1.5rem;
+  line-height: 1;
+  user-select: none;
+}
+.scard-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+.scard-body {
+  font-size: 0.92rem;
+  color: var(--slate);
+  line-height: 1.65;
+}
+
+/* NEGOCIOS TABS */
+.tabs {
+  display: flex; gap: 0;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 2.5rem;
+}
+.tab-btn {
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--slate);
+  background: none;
+  border: none;
+  padding: 0.85rem 2rem;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.tab-btn.active {
+  color: var(--navy);
+  font-weight: 600;
+  border-bottom-color: var(--gold);
+}
+.tab-btn:hover:not(.active) { color: var(--navy-mid); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* DAFO */
+.dafo-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.dafo-cell {
+  border-radius: 8px;
+  padding: 1.75rem;
+}
+.dafo-cell.debilidades {
+  background: #fef3f2; border: 1px solid #fecaca;
+}
+.dafo-cell.amenazas {
+  background: #fffbeb; border: 1px solid #fde68a;
+}
+.dafo-cell.fortalezas {
+  background: #f0fdf4; border: 1px solid #bbf7d0;
+}
+.dafo-cell.oportunidades {
+  background: #eff6ff; border: 1px solid #bfdbfe;
+}
+.dafo-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.dafo-cell.debilidades .dafo-label { color: var(--danger); }
+.dafo-cell.amenazas .dafo-label { color: var(--warn); }
+.dafo-cell.fortalezas .dafo-label { color: var(--success); }
+.dafo-cell.oportunidades .dafo-label { color: var(--navy-light); }
+
+.dafo-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0.4rem;
+}
+.dafo-list li {
+  font-size: 0.875rem;
+  color: var(--navy);
+  padding-left: 1rem;
+  position: relative;
+  line-height: 1.5;
+}
+.dafo-list li::before {
+  content: '—';
+  position: absolute; left: 0;
+  color: var(--slate-light);
+  font-size: 0.8rem;
+}
+
+/* KPI STRIP */
+.kpi-strip {
+  display: flex;
+  gap: 0;
+  background: var(--navy);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 1.5rem;
+}
+.kpi-item {
+  flex: 1;
+  padding: 1.25rem 1.5rem;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+}
+.kpi-item:last-child { border-right: none; }
+.kpi-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  display: block;
+}
+.kpi-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-top: 0.2rem;
+  display: block;
+}
+
+/* PORTER */
+.porter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto 2.5rem;
+}
+.porter-cell {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+}
+.porter-cell.center-cell {
+  grid-column: 2; grid-row: 2;
+  background: rgba(200,151,58,0.15);
+  border-color: var(--gold);
+}
+.porter-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+.porter-rating {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: inline-block;
+  padding: 0.2rem 0.9rem;
+  border-radius: 4px;
+}
+.rating-muy-alta { background: rgba(192,57,43,0.2); color: #ff6b5b; }
+.rating-alta { background: rgba(183,119,13,0.2); color: #f0a832; }
+.rating-media { background: rgba(26,107,60,0.25); color: #4ade80; }
+.rating-bajo { background: rgba(42,74,138,0.3); color: #93c5fd; }
+
+.porter-cell .porter-label { color: rgba(255,255,255,0.75); }
+.section-full .dafo-list li { color: #ffffff; }
+
+.porter-insight {
+  background: rgba(255,255,255,0.05);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  padding: 1.25rem 1.75rem;
+  margin-top: 2rem;
+  max-width: 780px;
+  margin-left: auto; margin-right: auto;
+}
+.porter-insight p {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.8);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+/* AEROSUR */
+.aerosur-socios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.socio-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.socio-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px;
+}
+.socio-card.halcon::before { background: var(--navy); }
+.socio-card.jcyl::before { background: var(--gold); }
+.socio-card.fin1::before { background: #2980b9; }
+.socio-card.auto::before { background: #27ae60; }
+.socio-card.fin2::before { background: #8e44ad; }
+.socio-card.airbus::before { background: #e74c3c; }
+
+.socio-pct {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+}
+.socio-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--slate);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0.3rem 0 0.7rem;
+}
+.socio-aport {
+  font-size: 0.82rem;
+  color: var(--slate-light);
+  line-height: 1.5;
+}
+.socio-aport strong { color: var(--navy); }
+
+/* CAPITAL VISUAL */
+.capital-bar {
+  display: flex;
+  height: 48px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+  box-shadow: var(--shadow);
+}
+.cap-segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.04em;
+  transition: flex 0.5s ease;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.cap-legend {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.cap-leg-item {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.8rem; color: var(--slate);
+}
+.cap-leg-dot {
+  width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0;
+}
+
+/* FINANCIERO */
+.fin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin-bottom: 1.5rem;
+}
+.fin-table th {
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.75rem 1rem;
+  text-align: right;
+}
+.fin-table th:first-child { text-align: left; }
+.fin-table td {
+  padding: 0.6rem 1rem;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--navy);
+}
+.fin-table td:first-child {
+  text-align: left;
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.88rem;
+  color: var(--slate);
+  font-weight: 400;
+}
+.fin-table tr.section-row td {
+  background: var(--cream);
+  font-weight: 600;
+  color: var(--navy);
+  font-family: 'Source Serif 4', serif;
+}
+.fin-table tr:hover td { background: rgba(200,151,58,0.04); }
+.neg { color: var(--danger) !important; }
+.highlight-row td {
+  background: rgba(15,31,61,0.04);
+  font-weight: 600 !important;
+}
+
+/* ALTERNATIVAS */
+.alt-tabs {
+  display: flex; gap: 0.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.alt-tab-btn {
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.9rem;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  padding: 0.6rem 1.25rem;
+  cursor: pointer;
+  color: var(--slate);
+  transition: all 0.2s;
+}
+.alt-tab-btn.active {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+.alt-tab-btn:hover:not(.active) {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+
+.alt-panel { display: none; }
+.alt-panel.active { display: block; }
+
+.alt-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.alt-header {
+  background: var(--navy);
+  padding: 2rem 2.5rem;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.alt-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+}
+.alt-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.9rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  margin-top: 0.3rem;
+}
+.badge-green { background: rgba(74,222,128,0.2); color: #4ade80; border: 1px solid rgba(74,222,128,0.3); }
+.badge-red { background: rgba(255,107,91,0.2); color: #ff6b5b; border: 1px solid rgba(255,107,91,0.3); }
+.badge-yellow { background: rgba(240,168,50,0.2); color: var(--gold-light); border: 1px solid rgba(240,168,50,0.3); }
+
+.alt-body {
+  padding: 2rem 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.alt-section-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.pros-cons-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0.6rem;
+}
+.pros-cons-list li {
+  font-size: 0.9rem;
+  color: var(--slate);
+  padding-left: 1.4rem;
+  position: relative;
+  line-height: 1.55;
+}
+.pros-cons-list.pros li::before {
+  content: '+';
+  position: absolute; left: 0;
+  color: var(--success);
+  font-weight: 700; font-size: 1rem;
+}
+.pros-cons-list.cons li::before {
+  content: '−';
+  position: absolute; left: 0;
+  color: var(--danger);
+  font-weight: 700; font-size: 1rem;
+}
+
+.alt-action {
+  grid-column: 1 / -1;
+  background: var(--cream);
+  border-radius: 8px;
+  padding: 1.5rem;
+  border-left: 4px solid var(--gold);
+}
+.alt-action-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.alt-action-steps {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0.5rem;
+  counter-reset: step;
+}
+.alt-action-steps li {
+  font-size: 0.9rem;
+  color: var(--navy);
+  padding-left: 2rem;
+  position: relative;
+  line-height: 1.55;
+  counter-increment: step;
+}
+.alt-action-steps li::before {
+  content: counter(step);
+  position: absolute; left: 0;
+  width: 1.4rem; height: 1.4rem;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 500;
+  top: 0.1rem;
+}
+
+/* REFLEXIÓN FINAL */
+.questions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+.question-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+.question-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.4;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.question-text {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.8);
+  font-style: italic;
+  line-height: 1.65;
+  margin-bottom: 0.85rem;
+}
+.question-key-btn {
+  background: none;
+  border: 1px solid rgba(200,151,58,0.4);
+  border-radius: 4px;
+  padding: 0.3rem 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex; align-items: center; gap: 0.4rem;
+  width: 100%;
+  justify-content: space-between;
+}
+.question-key-btn:hover {
+  background: rgba(200,151,58,0.1);
+  border-color: var(--gold);
+}
+.question-key-btn .key-arrow {
+  transition: transform 0.3s;
+  font-size: 0.7rem;
+}
+.question-key-btn.open .key-arrow { transform: rotate(180deg); }
+.question-key-content {
+  display: none;
+  margin-top: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: rgba(200,151,58,0.08);
+  border-left: 2px solid var(--gold);
+  border-radius: 0 4px 4px 0;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.65;
+}
+.question-key-content.open { display: block; }
+.question-key-content strong { color: var(--gold-light); }
+
+/* NOTAS DEL PROFESOR */
+.prof-note {
+  background: rgba(200,151,58,0.07);
+  border: 1px solid rgba(200,151,58,0.2);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+.prof-note-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.85rem 1.25rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s;
+}
+.prof-note-header:hover { background: rgba(200,151,58,0.08); }
+.prof-note-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.prof-note-label::before {
+  content: '📋';
+  font-size: 0.8rem;
+}
+.prof-note-arrow {
+  font-size: 0.7rem;
+  color: var(--gold);
+  transition: transform 0.3s;
+}
+.prof-note.open .prof-note-arrow { transform: rotate(180deg); }
+.prof-note-body {
+  display: none;
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid rgba(200,151,58,0.15);
+  font-size: 0.88rem;
+  color: var(--slate);
+  line-height: 1.7;
+}
+.section-full .prof-note-body { color: rgba(255,255,255,0.7); }
+.prof-note.open .prof-note-body { display: block; }
+.prof-note-body p { margin-bottom: 0.75rem; }
+.prof-note-body p:last-child { margin-bottom: 0; }
+.prof-note-body strong { color: var(--navy); }
+.section-full .prof-note-body strong { color: var(--gold-light); }
+
+/* COLLAPSIBLE */
+.collapsible-btn {
+  width: 100%;
+  background: var(--cream-dark);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.95rem;
+  color: var(--navy);
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 0.5rem;
+  transition: background 0.2s;
+  text-align: left;
+}
+.collapsible-btn:hover { background: #e5ddd0; }
+.collapsible-btn .arrow {
+  font-size: 0.8rem;
+  transition: transform 0.3s;
+  color: var(--slate-light);
+}
+.collapsible-btn.open .arrow { transform: rotate(180deg); }
+.collapsible-content {
+  display: none;
+  padding: 1.5rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 0 0 6px 6px;
+  margin-top: -0.5rem;
+  margin-bottom: 0.75rem;
+}
+.collapsible-content.open { display: block; }
+
+/* DIVIDER */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 3rem 0;
+}
+
+/* TOOLTIP */
+.tooltip-trigger {
+  border-bottom: 1px dashed var(--slate-light);
+  cursor: help;
+  position: relative;
+}
+.tooltip-trigger:hover .tooltip-box {
+  display: block;
+}
+.tooltip-box {
+  display: none;
+  position: absolute;
+  bottom: 100%; left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy);
+  color: var(--white);
+  font-size: 0.78rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 5px;
+  white-space: nowrap;
+  z-index: 10;
+  margin-bottom: 6px;
+  font-style: normal;
+  font-family: 'Source Serif 4', serif;
+  pointer-events: none;
+  max-width: 260px;
+  white-space: normal;
+  text-align: center;
+}
+.tooltip-box::after {
+  content: '';
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--navy);
+}
+
+/* NOTE BOX */
+.note-box {
+  background: rgba(200,151,58,0.08);
+  border: 1px solid rgba(200,151,58,0.25);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  color: var(--navy);
+  line-height: 1.65;
+}
+.note-box strong { color: var(--warn); }
+
+/* FOOTER */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  padding: 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero { padding: 6rem 2rem 4rem; }
+  .section { padding: 3rem 2rem; }
+  .situation-grid { grid-template-columns: 1fr; }
+  .dafo-container { grid-template-columns: 1fr; }
+  .aerosur-socios { grid-template-columns: 1fr 1fr; }
+  .alt-body { grid-template-columns: 1fr; }
+  .questions-grid { grid-template-columns: 1fr; }
+  nav { padding: 0 1rem; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Grupo Halcón</div>
+  <ul class="nav-links">
+    <li><a href="#situacion">Situación</a></li>
+    <li><a href="#negocios">Negocios</a></li>
+    <li><a href="#entorno">Entorno</a></li>
+    <li><a href="#aerosur">Aerosur</a></li>
+    <li><a href="#alternativas">Alternativas</a></li>
+    <li><a href="#reflexion">Reflexión</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">San Telmo Business School · Programa El Gobierno de la Empresa</div>
+  <h1>Grupo Halcón:<br><em>La Elección de Futuro</em></h1>
+
+  <div class="hero-divider"></div>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Protagonista</span>
+      <span class="hero-meta-value">Guillermo Gámez, CEO y 55% accionista</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Sector</span>
+      <span class="hero-meta-value">Aeronáutico · Automoción · Inmobiliario</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Decisión</span>
+      <span class="hero-meta-value">Elección estratégica y de gobierno</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 1: SITUACIÓN -->
+<section class="section" id="situacion">
+  <div class="section-label">01</div>
+  <h2 class="section-title">Situación de Guillermo</h2>
+  <p class="section-intro">Guillermo Gámez cumple 50 años y debe decidir el futuro de su grupo empresarial. El caso plantea una decisión estratégica de alto impacto en un contexto de cambio sectorial acelerado.</p>
+
+  <div class="situation-grid">
+    <div class="situation-card highlight">
+      <div class="scard-num">I</div>
+      <div class="scard-title">Está confuso</div>
+      <p class="scard-body">El CEO reconoce no tener claridad sobre el rumbo. Valora acudir a un consultor externo pero desconfía de los costes y del riesgo de confidencialidad. Esta confusión es en sí misma una señal de gobierno: el consejo debería ser el espacio donde se trabaje esta claridad estratégica.</p>
+    </div>
+    <div class="situation-card">
+      <div class="scard-num">II</div>
+      <div class="scard-title">Negocio aeronáutico: desciende en la cadena de valor</div>
+      <p class="scard-body">La industria aeronáutica se estructura en niveles (<em>tiers</em>) según la proximidad al fabricante final de la aeronave:</p>
+      <ul style="margin: 0.6rem 0 0.8rem 1.2rem; font-size:0.88rem; color:var(--slate); line-height:1.65;">
+        <li><strong>OEM</strong> (Airbus, Boeing…): ensamblan la aeronave completa y responden ante el cliente final.</li>
+        <li><strong>TIER-1</strong>: integran y suministran sistemas o conjuntos completos directamente al OEM. Alta capacidad técnica, ingeniería de diseño y relación contractual directa con el OEM.</li>
+        <li><strong>TIER-2</strong>: fabrican subsistemas o componentes para el TIER-1.</li>
+        <li><strong>TIER-3</strong>: proveedores de partes, utillaje y materiales para TIER-1 y TIER-2.</li>
+      </ul>
+      <p class="scard-body">Grupo Halcón llegó a suministrar directamente a los OEM (posición TIER-1). Hoy opera como <strong>TIER-2/3</strong>, fabricando mecanizados para TIER-1 y TIER-2. Los márgenes se comprimen por la presión de los OEM y la necesidad de invertir en tecnología. Sin proyecto claro, la tendencia es de deterioro progresivo.</p>
+    </div>
+    <div class="situation-card">
+      <div class="scard-num">III</div>
+      <div class="scard-title">Negocio recambios: commodity y sucesión</div>
+      <p class="scard-body">Negocio marginal (€5–7M ventas, €100k beneficio neto) con un único activo relevante: el directivo responsable, próximo a jubilarse. El producto se ha convertido en commodity por la presión asiática. Require decisión sobre su futuro independientemente de AEROSUR.</p>
+    </div>
+    <div class="situation-card">
+      <div class="scard-num">IV</div>
+      <div class="scard-title">Negocio inmobiliario: estable y sin riesgo</div>
+      <p class="scard-body">Inmobiliaria Gámez (50% Guillermo, 50% hermana Inés) genera €2,5M de beneficio anual con €3M de liquidez disponible y valoración de €25M. Es el activo de reserva estratégica. Su rol como fuente de financiación es clave en cualquier escenario.</p>
+    </div>
+    <div class="situation-card full-width">
+      <div class="scard-num">V</div>
+      <div class="scard-title">Proyecto AEROSUR: luces y sombras</div>
+      <p class="scard-body">Se presenta la oportunidad de integrar Grupo Halcón en <strong>AEROSUR</strong>, una NewCo de €95M de capital para crear un TIER-1 español en <em>composite</em> aeronáutico, ligado al programa A350 de Airbus. La oportunidad es transformadora pero implica: pérdida de control mayoritario, cambio tecnológico radical (composite vs. mecanizado), renovación del equipo directivo y dependencia de contratos Airbus que pueden retrasarse.</p>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>Perspectiva de consejo:</strong> El objetivo de la sesión es adoptar la perspectiva del <strong>consejo de administración</strong>, no la del CEO ejecutivo. El consejo debe orientar sobre el proyecto empresarial y la estrategia, velar por los intereses de todos los accionistas y ayudar al CEO a tomar una decisión informada — sin sustituir su labor directiva.
+  </div>
+
+  <div class="prof-note" id="pn-situacion">
+    <div class="prof-note-header" onclick="toggleProfNote('pn-situacion')">
+      <span class="prof-note-label">Notas para tutoría — Cómo abrir la sesión</span>
+      <span class="prof-note-arrow">▼</span>
+    </div>
+    <div class="prof-note-body">
+      <p>El caso es rico en dilemas simultáneos, lo que puede generar dispersión en el debate. La primera intervención del profesor debe <strong>centrar el foco</strong>: no se trata de resolver todos los problemas de Guillermo, sino de ejercitar el rol del consejo frente al CEO. La pregunta de apertura recomendada es: <em>"¿Qué esperáis que haga el consejo por Guillermo hoy?"</em> Esto activa inmediatamente la diferencia entre gobernar y dirigir.</p>
+      <p>Conviene señalar que la <strong>confusión de Guillermo es el dato más revelador del caso</strong>: un CEO que no sabe qué hacer es un síntoma de que el consejo no ha estado haciendo su trabajo. El consejo no puede ser solo una cámara de validación de decisiones ejecutivas.</p>
+      <p>El hecho de que Guillermo piense en contratar un consultor externo en lugar de acudir al consejo dice mucho sobre la calidad de la gobernanza actual. Esto puede ser un punto de fricción productivo para la sesión.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 2: LOS TRES NEGOCIOS -->
+<section class="section" id="negocios" style="padding-top: 0;">
+  <hr class="divider">
+  <div class="section-label">02</div>
+  <h2 class="section-title">Los tres negocios</h2>
+  <p class="section-intro">Análisis DAFO de cada unidad de negocio con sus principales ratios. Usa las pestañas para navegar entre ellas.</p>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('negocios','aero')">Aeronáutico</button>
+    <button class="tab-btn" onclick="switchTab('negocios','recambios')">Recambios</button>
+    <button class="tab-btn" onclick="switchTab('negocios','inmob')">Inmobiliario</button>
+  </div>
+
+  <!-- AERONÁUTICO -->
+  <div class="tab-panel active" data-tab="negocios" data-name="aero">
+    <div class="dafo-container">
+      <div class="dafo-cell debilidades">
+        <div class="dafo-label">Debilidades</div>
+        <ul class="dafo-list">
+          <li>Falta de proyecto y rumbo estratégico</li>
+          <li>Posicionamiento en mecanizado (TIER-2/3)</li>
+          <li>Baja inversión e innovación</li>
+          <li>Equipo directivo "acomodado"</li>
+        </ul>
+      </div>
+      <div class="dafo-cell amenazas">
+        <div class="dafo-label">Amenazas</div>
+        <ul class="dafo-list">
+          <li>Márgenes bajando por presión de los OEM</li>
+          <li>Riesgo de seguir descendiendo en la cadena de valor</li>
+          <li>Ser sustituidos por competidores más innovadores</li>
+          <li>Socios no adecuados para el futuro (quieren salir)</li>
+        </ul>
+      </div>
+      <div class="dafo-cell fortalezas">
+        <div class="dafo-label">Fortalezas</div>
+        <ul class="dafo-list">
+          <li>Experiencia operativa dilatada</li>
+          <li>Bajos costes y buen servicio</li>
+          <li>Base de clientes diversificada (no depende de Airbus)</li>
+          <li>Cinco plantas operativas en ubicaciones estratégicas</li>
+        </ul>
+      </div>
+      <div class="dafo-cell oportunidades">
+        <div class="dafo-label">Oportunidades</div>
+        <ul class="dafo-list">
+          <li>Proyecto AEROSUR (ascender a TIER-1)</li>
+          <li>Desarrollo propio en composite e internacionalización</li>
+          <li>Otras alternativas: venta, alianzas con otros TIER-1</li>
+        </ul>
+      </div>
+    </div>
+    <div class="kpi-strip">
+      <div class="kpi-item"><span class="kpi-val">€75M</span><span class="kpi-lbl">Ventas</span></div>
+      <div class="kpi-item"><span class="kpi-val">€7M</span><span class="kpi-lbl">EBITDA (9,3%)</span></div>
+      <div class="kpi-item"><span class="kpi-val">€2M</span><span class="kpi-lbl">EBT (2,7%)</span></div>
+      <div class="kpi-item"><span class="kpi-val">€35M</span><span class="kpi-lbl">Deuda neta</span></div>
+      <div class="kpi-item"><span class="kpi-val">300</span><span class="kpi-lbl">Empleados</span></div>
+      <div class="kpi-item"><span class="kpi-val">5x</span><span class="kpi-lbl">Deuda/EBITDA</span></div>
+    </div>
+  </div>
+
+  <!-- RECAMBIOS -->
+  <div class="tab-panel" data-tab="negocios" data-name="recambios">
+    <div class="dafo-container">
+      <div class="dafo-cell debilidades">
+        <div class="dafo-label">Debilidades</div>
+        <ul class="dafo-list">
+          <li>Falta de proyecto y rumbo propio</li>
+          <li>Dependencia crítica de un único directivo</li>
+          <li>Dependencia operativa del negocio aeronáutico (espacios, infraestructura)</li>
+        </ul>
+      </div>
+      <div class="dafo-cell amenazas">
+        <div class="dafo-label">Amenazas</div>
+        <ul class="dafo-list">
+          <li>Sucesión inminente del directivo responsable</li>
+          <li>Recuperación del circulante comprometido (€3M)</li>
+          <li>Incompatibilidad con el proyecto AEROSUR (exige desinversión)</li>
+        </ul>
+      </div>
+      <div class="dafo-cell fortalezas">
+        <div class="dafo-label">Fortalezas</div>
+        <ul class="dafo-list">
+          <li>Directivo de confianza con sucesor preparado</li>
+          <li>Negocio rentable con inversión mínima</li>
+        </ul>
+      </div>
+      <div class="dafo-cell oportunidades">
+        <div class="dafo-label">Oportunidades</div>
+        <ul class="dafo-list">
+          <li>Venderlo al directivo en el momento de la jubilación (MBO)</li>
+          <li>Recuperar el circulante (€3M) para financiar otros proyectos</li>
+        </ul>
+      </div>
+    </div>
+    <div class="kpi-strip">
+      <div class="kpi-item"><span class="kpi-val">€5–7M</span><span class="kpi-lbl">Ventas</span></div>
+      <div class="kpi-item"><span class="kpi-val">€100k</span><span class="kpi-lbl">Beneficio neto</span></div>
+      <div class="kpi-item"><span class="kpi-val">€3M</span><span class="kpi-lbl">Circulante</span></div>
+      <div class="kpi-item"><span class="kpi-val">€500k</span><span class="kpi-lbl">Fondo maniobra</span></div>
+      <div class="kpi-item"><span class="kpi-val">12</span><span class="kpi-lbl">Empleados</span></div>
+      <div class="kpi-item"><span class="kpi-val">€500k</span><span class="kpi-lbl">EBT acum. 5 años</span></div>
+    </div>
+  </div>
+
+  <!-- INMOBILIARIO -->
+  <div class="tab-panel" data-tab="negocios" data-name="inmob">
+    <div class="dafo-container">
+      <div class="dafo-cell debilidades">
+        <div class="dafo-label">Debilidades</div>
+        <ul class="dafo-list">
+          <li>Dependencia de un único directivo gestor externo</li>
+          <li>Gobierno compartido con la hermana Inés (50/50)</li>
+        </ul>
+      </div>
+      <div class="dafo-cell amenazas">
+        <div class="dafo-label">Amenazas</div>
+        <ul class="dafo-list">
+          <li>Posible salida de la socia (Inés) del capital</li>
+          <li>Salida o indisponibilidad del directivo gestor</li>
+          <li>Uso de los recursos para otras necesidades del grupo</li>
+        </ul>
+      </div>
+      <div class="dafo-cell fortalezas">
+        <div class="dafo-label">Fortalezas</div>
+        <ul class="dafo-list">
+          <li>Directivo experimentado con track record probado</li>
+          <li>Riesgo bajo y rentabilidad estable y creciente</li>
+          <li>€3M de liquidez disponible para invertir</li>
+          <li>Valoración de €25M en mercado</li>
+        </ul>
+      </div>
+      <div class="dafo-cell oportunidades">
+        <div class="dafo-label">Oportunidades</div>
+        <ul class="dafo-list">
+          <li>Utilizar liquidez para financiar salida de socios en Grupo Halcón</li>
+          <li>Financiar nuevos proyectos estratégicos</li>
+          <li>Mantener como activo de ahorro y generación de rentas</li>
+        </ul>
+      </div>
+    </div>
+    <div class="kpi-strip">
+      <div class="kpi-item"><span class="kpi-val">€25M</span><span class="kpi-lbl">Valoración</span></div>
+      <div class="kpi-item"><span class="kpi-val">€2,5M</span><span class="kpi-lbl">Beneficio/año</span></div>
+      <div class="kpi-item"><span class="kpi-val">€10M</span><span class="kpi-lbl">Recursos propios</span></div>
+      <div class="kpi-item"><span class="kpi-val">€3M</span><span class="kpi-lbl">Liquidez</span></div>
+      <div class="kpi-item"><span class="kpi-val">€500k</span><span class="kpi-lbl">Dividendo anual</span></div>
+      <div class="kpi-item"><span class="kpi-val">€8M</span><span class="kpi-lbl">EBT acum. 5 años</span></div>
+    </div>
+  </div>
+</section>
+
+  <div class="prof-note" id="pn-negocios">
+    <div class="prof-note-header" onclick="toggleProfNote('pn-negocios')">
+      <span class="prof-note-label">Notas para tutoría — Los tres negocios</span>
+      <span class="prof-note-arrow">▼</span>
+    </div>
+    <div class="prof-note-body">
+      <p>El análisis de los tres negocios debe conducir a una conclusión clara: <strong>solo la inmobiliaria tiene futuro sin transformación</strong>. Los recambios están en declive estructural y el aeronáutico requiere un salto cualitativo para sobrevivir. El debate en clase suele subestimar la fragilidad del negocio aeronáutico actual: el EBITDA/Deuda de 5 veces es aceptable, pero la tendencia de compresión de márgenes es la clave.</p>
+      <p>Es útil preguntar: <em>"¿Cuántos años puede sobrevivir Halcón sin cambios como TIER-2/3?"</em> Las respuestas suelen oscilar entre 3 y 10 años. La respuesta más rigurosa depende de si los programas actuales (E170, E190, B777, A320) se renuevan — lo que no está garantizado.</p>
+      <p>El negocio de <strong>recambios</strong> tiene una solución evidente que los participantes suelen encontrar rápido: MBO al directivo. Esto libera €3M de circulante y simplifica el grupo. Pero hay que explorar si el directivo tiene capacidad financiera para comprarlo, y en qué condiciones.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN 3: ENTORNO COMPETITIVO -->
+<div class="section-full" id="entorno">
+  <div class="section">
+    <div class="section-label">03</div>
+    <h2 class="section-title">Entorno competitivo aeronáutico</h2>
+    <p class="section-intro">El análisis de las 5 Fuerzas de Porter revela un entorno estructuralmente exigente que penaliza la posición actual de TIER-2/3 y presiona hacia la transformación.</p>
+
+    <div class="porter-grid">
+      <!-- Fila 1 -->
+      <div></div>
+      <div class="porter-cell">
+        <div class="porter-label">Poder negociador de proveedores</div>
+        <span class="porter-rating rating-bajo">BAJO</span>
+      </div>
+      <div></div>
+
+      <!-- Fila 2 -->
+      <div class="porter-cell">
+        <div class="porter-label">Amenaza de nuevos competidores</div>
+        <span class="porter-rating rating-media">MEDIA</span>
+      </div>
+      <div class="porter-cell center-cell">
+        <div class="porter-label" style="color: var(--gold-light);">Competencia del mercado</div>
+        <span class="porter-rating rating-alta">ALTA</span>
+      </div>
+      <div class="porter-cell">
+        <div class="porter-label">Amenaza de productos sustitutivos</div>
+        <span class="porter-rating rating-alta">ALTA</span>
+      </div>
+
+      <!-- Fila 3 -->
+      <div></div>
+      <div class="porter-cell">
+        <div class="porter-label">Concentración de clientes (OEM)</div>
+        <span class="porter-rating rating-muy-alta">MUY ALTA</span>
+      </div>
+      <div></div>
+    </div>
+
+    <div class="porter-insight">
+      <p>El sector aeronáutico es un negocio global de márgenes razonables donde la eficiencia, la calidad del servicio, la dimensión y la internacionalización son muy importantes. Pero la <strong style="color:var(--gold-light)">innovación y la capacidad de inversión son esenciales para la continuidad</strong>. La concentración extrema de los clientes OEM (Airbus, Boeing, Bombardier, Embraer) es la fuerza dominante: quien no esté en la cadena de valor de forma robusta, queda expuesto.</p>
+    </div>
+
+    <div style="margin-top: 2.5rem;">
+      <div class="section-label" style="margin-bottom: 1rem;">¿Cómo incrementar la posición en el sector?</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+        <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; padding: 1.5rem;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem;">En la cadena de valor</div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.4rem;">
+            <li style="font-size:0.875rem; color:#ffffff; padding-left:1rem; position:relative; line-height:1.5;">Transformarse en TIER-1</li>
+            <li style="font-size:0.875rem; color:#ffffff; padding-left:1rem; position:relative; line-height:1.5;">Gestionar TIER-2 y TIER-3 asociados</li>
+            <li style="font-size:0.875rem; color:#ffffff; padding-left:1rem; position:relative; line-height:1.5;">Internacionalizar la fabricación</li>
+          </ul>
+        </div>
+        <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; padding: 1.5rem;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem;">En los productos</div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.4rem;">
+            <li style="font-size:0.875rem; color:#ffffff; padding-left:1rem; position:relative; line-height:1.5;">Invertir en ingeniería de diseño</li>
+            <li style="font-size:0.875rem; color:#ffffff; padding-left:1rem; position:relative; line-height:1.5;">Invertir en <em>composite</em></li>
+            <li style="font-size:0.875rem; color:#ffffff; padding-left:1rem; position:relative; line-height:1.5;">Desarrollar capacidad de innovación</li>
+          </ul>
+        </div>
+        <div style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; padding: 1.5rem;">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem;">En la gobernanza</div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.4rem;">
+            <li style="font-size:0.875rem; color:#ffffff; padding-left:1rem; position:relative; line-height:1.5;">Buscar alianzas estratégicas</li>
+            <li style="font-size:0.875rem; color:#ffffff; padding-left:1rem; position:relative; line-height:1.5;">Restructurar el accionariado</li>
+            <li style="font-size:0.875rem; color:#ffffff; padding-left:1rem; position:relative; line-height:1.5;">Reforzar el equipo directivo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="prof-note" id="pn-entorno">
+      <div class="prof-note-header" onclick="toggleProfNote('pn-entorno')">
+        <span class="prof-note-label">Notas para tutoría — Entorno competitivo</span>
+        <span class="prof-note-arrow">▼</span>
+      </div>
+      <div class="prof-note-body">
+        <p>El análisis de Porter debe llevar al participante a una conclusión incómoda: <strong>la posición actual de Halcón (TIER-2/3, mecanizado, sin innovación) es estructuralmente débil</strong>. El poder negociador de los OEM es el factor dominante: pueden exigir reducciones de precio, cambios tecnológicos y plazos más cortos, y Halcón tiene pocas palancas de respuesta.</p>
+        <p>La amenaza de productos sustitutivos (composite sobre mecanizado metálico) no es futura: ya está ocurriendo. Más del 50% del peso de las aeronaves actuales es ya composite. No invertir en esta tecnología equivale a apostar por mercados en contracción.</p>
+        <p>El punto de las alianzas merece énfasis: la respuesta estratégica de un operador mediano como Halcón en un sector con estas características no puede ser el crecimiento orgánico solitario. Las alianzas —incluyendo AEROSUR— son casi una necesidad estructural, no una opción.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="section" id="aerosur">
+  <div class="section-label">04</div>
+  <h2 class="section-title">Proyecto AEROSUR</h2>
+  <p class="section-intro">Una NewCo de €95M de capital cuyo objetivo es crear el primer TIER-1 español en <em>composite</em> aeronáutico, con sede en Miranda de Ebro, ligado al programa A350 de Airbus.</p>
+
+  <h3 style="font-family:'Playfair Display',serif; font-size:1.2rem; margin-bottom:1.25rem; color:var(--navy);">Estructura de capital</h3>
+
+  <!-- BARRA DE CAPITAL -->
+  <div class="capital-bar">
+    <div class="cap-segment" style="flex: 31.6; background: var(--navy);">31,6%</div>
+    <div class="cap-segment" style="flex: 21.1; background: #c8973a;">21,1%</div>
+    <div class="cap-segment" style="flex: 16.8; background: #2980b9;">16,8%</div>
+    <div class="cap-segment" style="flex: 15.8; background: #27ae60;">15,8%</div>
+    <div class="cap-segment" style="flex: 12.6; background: #8e44ad;">12,6%</div>
+    <div class="cap-segment" style="flex: 2.1; background: #e74c3c;">2,1%</div>
+  </div>
+  <div class="cap-legend">
+    <div class="cap-leg-item"><div class="cap-leg-dot" style="background:var(--navy)"></div> Grupo Halcón 31,6% (€30M en acciones)</div>
+    <div class="cap-leg-item"><div class="cap-leg-dot" style="background:#c8973a"></div> C. Castilla y León 21,1% (acc. + €16,8M)</div>
+    <div class="cap-leg-item"><div class="cap-leg-dot" style="background:#2980b9"></div> Entidad financiera I 16,8% (acc. + €14,4M)</div>
+    <div class="cap-leg-item"><div class="cap-leg-dot" style="background:#27ae60"></div> Operador automoción 15,8% (€15M)</div>
+    <div class="cap-leg-item"><div class="cap-leg-dot" style="background:#8e44ad"></div> Entidad financiera II 12,6% (acc. + €10,8M)</div>
+    <div class="cap-leg-item"><div class="cap-leg-dot" style="background:#e74c3c"></div> Airbus 2,1% (acciones)</div>
+  </div>
+
+  <!-- SOCIOS -->
+  <div class="aerosur-socios">
+    <div class="socio-card halcon">
+      <div class="socio-pct">31,6%</div>
+      <div class="socio-name">Grupo Halcón</div>
+      <div class="socio-aport">Aporta <strong>negocio de mecanizados</strong> (valorado en €30M). Pierde socios: Gobierno Vasco y un privado salen por €10M. <strong>Socio industrial líder</strong> pero sin mayoría.</div>
+    </div>
+    <div class="socio-card jcyl">
+      <div class="socio-pct">21,1%</div>
+      <div class="socio-name">Comunidad Castilla y León</div>
+      <div class="socio-aport">Aporta participación (40%) en empresa <em>composite</em> + <strong>€16,8M en efectivo</strong>. Sale del capital a partir del año 5. Otorga subvenciones 25–30%.</div>
+    </div>
+    <div class="socio-card fin1">
+      <div class="socio-pct">16,8%</div>
+      <div class="socio-name">Entidad financiera I (CyL)</div>
+      <div class="socio-aport">Aporta participación (20%) en empresa <em>composite</em> + <strong>€14,4M en efectivo</strong>. Compromiso de préstamo participativo proporcional si hay retrasos.</div>
+    </div>
+    <div class="socio-card auto">
+      <div class="socio-pct">15,8%</div>
+      <div class="socio-name">Operador de automoción (TIER-1)</div>
+      <div class="socio-aport">Aporta <strong>€15M en efectivo</strong>. Aporta <em>know-how</em> en ingeniería de diseño, internacionalización y automatización. Presta servicios de asesoramiento.</div>
+    </div>
+    <div class="socio-card fin2">
+      <div class="socio-pct">12,6%</div>
+      <div class="socio-name">Entidad financiera II</div>
+      <div class="socio-aport">Aporta participación (15%) en empresa <em>composite</em> + <strong>€10,8M en efectivo</strong>. Con intereses en la región aunque sede fuera de CyL.</div>
+    </div>
+    <div class="socio-card airbus">
+      <div class="socio-pct">2,1%</div>
+      <div class="socio-name">Airbus</div>
+      <div class="socio-aport">Aporta participación (25%) en empresa <em>composite</em>. Adjudica <strong>2 contratos A350 + 1 A380</strong>. Puede salir a partir del año 5 si perjudica contratos con otros OEM.</div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>Préstamos participativos:</strong> Si el proyecto Airbus o las subvenciones se retrasan más de un año (habitual en el sector), la Comunidad y las dos entidades financieras realizarán préstamos participativos por €48M totales (€20M + €16M + €12M), con disposición en año 3, vencimiento año 5 e interés Euríbor + 600 pb. Los importes no pagados se capitalizan a valor nominal.
+  </div>
+
+  <!-- PLAN FINANCIERO -->
+  <h3 style="font-family:'Playfair Display',serif; font-size:1.2rem; margin: 2.5rem 0 1.25rem; color:var(--navy);">Plan económico-financiero proyectado</h3>
+
+  <div style="overflow-x:auto;">
+    <table class="fin-table">
+      <thead>
+        <tr>
+          <th>Concepto (€ miles)</th>
+          <th>GH actual</th>
+          <th>Año 1</th>
+          <th>Año 2</th>
+          <th>Año 3</th>
+          <th>Año 4</th>
+          <th>Año 5</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-row">
+          <td>Ventas</td>
+          <td>75.000</td><td>93.750</td><td>150.000</td><td>225.000</td><td>292.500</td><td>307.125</td>
+        </tr>
+        <tr>
+          <td>Crecimiento s/año anterior</td>
+          <td>—</td><td>+25%</td><td>+60%</td><td>+50%</td><td>+30%</td><td>+5%</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>EBITDA</td>
+          <td>7.000</td><td>6.563</td><td>12.750</td><td>22.500</td><td>32.175</td><td>36.855</td>
+        </tr>
+        <tr>
+          <td>EBITDA / Ventas</td>
+          <td>9,3%</td><td>7,0%</td><td>8,5%</td><td>10,0%</td><td>11,0%</td><td>12,0%</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>EBT (Beneficio antes de impuestos)</td>
+          <td>2.000</td><td class="neg">-2.416</td><td>1.221</td><td>6.287</td><td>13.177</td><td>18.022</td>
+        </tr>
+        <tr>
+          <td>EBT / Ventas</td>
+          <td>2,7%</td><td class="neg">-3,0%</td><td>1,0%</td><td>3,0%</td><td>5,0%</td><td>6,0%</td>
+        </tr>
+        <tr>
+          <td>CAPEX</td>
+          <td>3.000</td><td>12.000</td><td>50.000</td><td>45.000</td><td>20.000</td><td>5.000</td>
+        </tr>
+        <tr>
+          <td>Empleados</td>
+          <td>300</td><td>375</td><td>500</td><td>670</td><td>900</td><td>1.000</td>
+        </tr>
+        <tr class="section-row">
+          <td colspan="7">Balance de situación (€ miles)</td>
+        </tr>
+        <tr>
+          <td>Equity (recursos propios)</td>
+          <td>20.000</td><td>92.578</td><td>94.179</td><td>99.685</td><td>110.174</td><td>124.320</td>
+        </tr>
+        <tr>
+          <td>Deuda l/p</td>
+          <td>30.000</td><td>61.726</td><td>83.479</td><td>124.845</td><td>133.513</td><td>114.944</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Total activo</td>
+          <td>60.000</td><td>169.426</td><td>201.851</td><td>260.821</td><td>290.865</td><td>288.800</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DAFO AEROSUR -->
+  <h3 style="font-family:'Playfair Display',serif; font-size:1.2rem; margin: 2.5rem 0 1.25rem; color:var(--navy);">DAFO del proyecto AEROSUR</h3>
+  <div class="dafo-container">
+    <div class="dafo-cell debilidades">
+      <div class="dafo-label">Debilidades</div>
+      <ul class="dafo-list">
+        <li>Fuerte dependencia de Airbus (44–50% ventas)</li>
+        <li>Recursos limitados de Grupo Halcón</li>
+        <li>Sin experiencia en gobierno corporativo compartido</li>
+        <li>Sin experiencia en <em>composite</em> ni ingeniería de diseño</li>
+        <li>Sin experiencia en internacionalización</li>
+        <li>Interrogante sobre directivos y socios adecuados</li>
+      </ul>
+    </div>
+    <div class="dafo-cell amenazas">
+      <div class="dafo-label">Amenazas</div>
+      <ul class="dafo-list">
+        <li>Competencia con experiencia (Aernova)</li>
+        <li>Retrasos habituales en programas aeronáuticos</li>
+        <li>Dificultad de acceso a otros OEM con Airbus como socio</li>
+        <li>Restricciones para la financiación</li>
+        <li>Posible subida de tipos de interés</li>
+      </ul>
+    </div>
+    <div class="dafo-cell fortalezas">
+      <div class="dafo-label">Fortalezas</div>
+      <ul class="dafo-list">
+        <li>Proyecto estrella A350 garantizado</li>
+        <li>Experiencia acreditada en mecanizados</li>
+        <li>Socios que aportan valor real (financiero, tecnológico, institucional)</li>
+        <li>Alianza estratégica con Airbus</li>
+        <li>Subvenciones europeas del 25–30% para <em>composite</em></li>
+      </ul>
+    </div>
+    <div class="dafo-cell oportunidades">
+      <div class="dafo-label">Oportunidades</div>
+      <ul class="dafo-list">
+        <li>Mercado aeronáutico en crecimiento sostenido</li>
+        <li>Convertirse en el segundo TIER-1 español</li>
+        <li>Ascender en la cadena de valor</li>
+        <li>Diversificación e internacionalización</li>
+        <li>Beneficios significativos a partir del año 3</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="prof-note" id="pn-aerosur">
+    <div class="prof-note-header" onclick="toggleProfNote('pn-aerosur')">
+      <span class="prof-note-label">Notas para tutoría — Proyecto AEROSUR</span>
+      <span class="prof-note-arrow">▼</span>
+    </div>
+    <div class="prof-note-body">
+      <p>La pregunta central sobre el plan financiero es si los supuestos son razonables. El crecimiento de ventas del <strong>60% en el año 2 y 50% en el año 3</strong> es agresivo incluso para un proyecto con contratos garantizados. En el sector aeronáutico, los retrasos en la certificación de proveedores y la curva de aprendizaje en composite suelen alargar los plazos. El año 1 con pérdidas de €2,4M es el período más vulnerable.</p>
+      <p>Es importante que los participantes identifiquen que <strong>Grupo Halcón aporta acciones (no dinero)</strong>: su aportación es la valoración del negocio de mecanizados en €30M. Esto significa que Guillermo no "pone caja" en el proyecto, pero sí compromete su negocio principal — y si el proyecto fracasa, pierde ese negocio.</p>
+      <p>La presencia de <strong>Airbus como accionista</strong> (2,1%) es un arma de doble filo notable: da credibilidad y acceso tecnológico a corto plazo, pero puede bloquear contratos con Boeing, Bombardier o Embraer a largo. Este punto es excelente para el debate sobre los conflictos de interés entre socios.</p>
+      <p>Los <strong>préstamos participativos</strong> son una cláusula de protección inteligente: dan a la empresa una "red de seguridad" financiera de €48M en caso de retraso, pero con un coste (Euríbor + 600 pb) que puede convertirse en una carga pesada si el proyecto tarda en generar caja.</p>
+    </div>
+  </div>
+</section>
+<div class="section-full" id="alternativas">
+  <div class="section">
+    <div class="section-label">05</div>
+    <h2 class="section-title">Las cuatro alternativas</h2>
+    <p class="section-intro">El consejo de administración debe orientar a Guillermo sobre cuál de estas alternativas es la más adecuada para el futuro del grupo, evaluando sus ventajas, riesgos y el plan de acción asociado.</p>
+
+    <div class="alt-tabs">
+      <button class="alt-tab-btn active" onclick="switchAltTab('aerosur-si')">① Entrar en AEROSUR</button>
+      <button class="alt-tab-btn" onclick="switchAltTab('aerosur-no')">② No entrar en AEROSUR</button>
+      <button class="alt-tab-btn" onclick="switchAltTab('vender')">③ Vender Grupo Halcón</button>
+      <button class="alt-tab-btn" onclick="switchAltTab('resto')">④ Resto de negocios</button>
+    </div>
+
+    <!-- ALT 1 -->
+    <div class="alt-panel active" id="alt-aerosur-si">
+      <div class="alt-card">
+        <div class="alt-header">
+          <div>
+            <div class="alt-title">Entrar en AEROSUR</div>
+          </div>
+          <div style="display:flex; gap:0.5rem; flex-direction:column; align-items:flex-end;">
+            <span class="alt-badge badge-green">Alta recompensa potencial</span>
+            <span class="alt-badge badge-red">Alto riesgo de ejecución</span>
+          </div>
+        </div>
+        <div class="alt-body">
+          <div>
+            <div class="alt-section-title">A favor</div>
+            <ul class="pros-cons-list pros">
+              <li>Transforma a Grupo Halcón en TIER-1, posición estratégicamente sólida a largo plazo</li>
+              <li>Contratos garantizados de Airbus (A350 y A380) dan visibilidad de ingresos</li>
+              <li>Los socios aportan lo que Halcón no tiene: tecnología, capital y acceso institucional</li>
+              <li>Subvenciones europeas del 25–30% reducen el riesgo de la inversión en composite</li>
+              <li>El plan proyecta €18M de EBT en año 5 sobre €307M de ventas</li>
+              <li>Alternativa al statu quo que lleva a la empresa a la irrelevancia progresiva</li>
+            </ul>
+          </div>
+          <div>
+            <div class="alt-section-title">En contra / Riesgos</div>
+            <ul class="pros-cons-list cons">
+              <li>Guillermo pasa del 55% al 31,6%: pierde la mayoría de control definitivamente</li>
+              <li>Ningún socio tiene mayoría — riesgo de bloqueos en decisiones críticas</li>
+              <li>Año 1 con pérdidas (EBT -€2,4M): período de tensión financiera con deuda creciente</li>
+              <li>El proyecto exige cambio tecnológico radical (composite) y renovación directiva</li>
+              <li>Dependencia del 44–50% de ventas en Airbus; si se retrasa el A350, el plan se hunde</li>
+              <li>Incompatibilidad con el negocio de recambios: hay que desinvertir</li>
+              <li>El CAPEX máximo (€50M año 2) es tres veces el valor actual del balance de Halcón</li>
+            </ul>
+          </div>
+          <div class="alt-action">
+            <div class="alt-action-title">Condiciones para que tenga sentido</div>
+            <ol class="alt-action-steps">
+              <li>Negociar derechos de gobierno robustos en el pacto de socios: quórums, vetos en decisiones críticas, mecanismos de salida para Guillermo.</li>
+              <li>Resolver la salida del Gobierno Vasco y del socio privado (€10M) antes de la firma.</li>
+              <li>Confirmar por escrito los compromisos de Airbus (contratos) antes de comprometer el negocio de mecanizados.</li>
+              <li>Seleccionar la nueva dirección ejecutiva (proceso de head-hunter) antes o simultáneamente a la constitución de la NewCo.</li>
+              <li>Desinvertir en recambios — opción MBO al directivo actual — recuperando el circulante (€3M).</li>
+              <li>Acordar con la hermana Inés el uso de la liquidez inmobiliaria (€3M) como colchón ante imprevistos.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALT 2 -->
+    <div class="alt-panel" id="alt-aerosur-no">
+      <div class="alt-card">
+        <div class="alt-header">
+          <div>
+            <div class="alt-title">No entrar en AEROSUR</div>
+          </div>
+          <div style="display:flex; gap:0.5rem; flex-direction:column; align-items:flex-end;">
+            <span class="alt-badge badge-yellow">Riesgo de deterioro</span>
+            <span class="alt-badge badge-yellow">Requiere proyecto alternativo</span>
+          </div>
+        </div>
+        <div class="alt-body">
+          <div>
+            <div class="alt-section-title">A favor</div>
+            <ul class="pros-cons-list pros">
+              <li>Guillermo mantiene el control mayoritario (55%) y la capacidad de decisión</li>
+              <li>Evita la exposición a la dependencia de Airbus y los retrasos del A350</li>
+              <li>No expone a la empresa a una transformación tecnológica y organizativa de altísimo riesgo</li>
+              <li>El negocio actual genera caja (€7M EBITDA) y puede servir para crecer de forma más moderada</li>
+            </ul>
+          </div>
+          <div>
+            <div class="alt-section-title">En contra / Riesgos</div>
+            <ul class="pros-cons-list cons">
+              <li>La posición TIER-2/3 con márgenes decrecientes es estructuralmente insostenible a largo plazo</li>
+              <li>Sin proyecto alternativo claro, el statu quo implica declive progresivo</li>
+              <li>El socio privado quiere salir: hay que encontrar €10M para recomprar su participación</li>
+              <li>Seguir requiere igualmente inversión (composite, internacionalización) pero sin el apoyo institucional y los contratos que da AEROSUR</li>
+              <li>La ventana para crear un TIER-1 ligado al A350 puede no repetirse</li>
+            </ul>
+          </div>
+          <div class="alt-action">
+            <div class="alt-action-title">Si se rechaza AEROSUR, el plan alternativo debe incluir</div>
+            <ol class="alt-action-steps">
+              <li>Definir un proyecto estratégico propio: ¿composite por cuenta propia?, ¿internacionalización?, ¿alianza con otro TIER-1 diferente?</li>
+              <li>Resolver la salida del socio privado (€10M) con recursos propios, inmobiliaria o deuda.</li>
+              <li>Renovar el equipo directivo igualmente: el equipo actual no tiene ambición ni capacidad para un proyecto de crecimiento.</li>
+              <li>Evaluar si el negocio de recambios tiene futuro propio o debe desinvertirse independientemente.</li>
+              <li>Establecer un horizonte temporal claro: ¿cuántos años puede sostenerse el negocio actual sin transformación?</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALT 3 -->
+    <div class="alt-panel" id="alt-vender">
+      <div class="alt-card">
+        <div class="alt-header">
+          <div>
+            <div class="alt-title">Vender Grupo Halcón</div>
+          </div>
+          <div style="display:flex; gap:0.5rem; flex-direction:column; align-items:flex-end;">
+            <span class="alt-badge badge-green">Liquidez inmediata</span>
+            <span class="alt-badge badge-yellow">Decisión irreversible</span>
+          </div>
+        </div>
+        <div class="alt-body">
+          <div>
+            <div class="alt-section-title">A favor</div>
+            <ul class="pros-cons-list pros">
+              <li>Permite monetizar el valor acumulado en un momento de buenas perspectivas sectoriales</li>
+              <li>Valoración estimada de €40M según la firma de estrategia (EBITDA x 10,5 – deuda)</li>
+              <li>Guillermo queda libre de los riesgos del sector y puede reinvertir en negocios con más control</li>
+              <li>Puede ser la palanca para desarrollar la inmobiliaria con mayor ambición</li>
+              <li>El comprador adecuado (un TIER-1 con tecnología) puede dar continuidad al proyecto que Halcón no puede acometer solo</li>
+            </ul>
+          </div>
+          <div>
+            <div class="alt-section-title">En contra / Riesgos</div>
+            <ul class="pros-cons-list cons">
+              <li>Decisión emocionalmente difícil: es el legado familiar de tres generaciones</li>
+              <li>El precio de €40M debe contrastarse con el potencial de AEROSUR a 5 años (€18M EBT anual sobre una participación del 31,6%)</li>
+              <li>Una venta precipitada puede subvalorar el activo</li>
+              <li>Hay que obtener el acuerdo de los demás accionistas (derecho de adquisición preferente)</li>
+              <li>El proceso de venta puede generar incertidumbre en clientes, empleados y proveedores</li>
+            </ul>
+          </div>
+          <div class="alt-action">
+            <div class="alt-action-title">Plan de acción si se decide explorar la venta</div>
+            <ol class="alt-action-steps">
+              <li>Contratar un asesor financiero (M&A boutique especializada en sector aeronáutico) para valoración y proceso ordenado.</li>
+              <li>Identificar el perfil del comprador idóneo: TIER-1 con interés en España, fondo de PE especializado en industriales, otro operador de mecanizados en búsqueda de escala.</li>
+              <li>Preparar el data room y el proceso de due diligence con confidencialidad estricta.</li>
+              <li>Garantizar cláusulas de continuidad laboral en las plantas de Vitoria y Miranda de Ebro.</li>
+              <li>Acordar con los socios el precio y mecanismo de salida — especialmente el socio privado que ya quiere liquidar.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALT 4 -->
+    <div class="alt-panel" id="alt-resto">
+      <div class="alt-card">
+        <div class="alt-header">
+          <div>
+            <div class="alt-title">Resto de negocios</div>
+            <div style="font-size:0.9rem; color:rgba(255,255,255,0.55); margin-top:0.3rem; font-style:italic;">Recambios e Inmobiliaria — decisiones independientes</div>
+          </div>
+          <div style="display:flex; gap:0.5rem; flex-direction:column; align-items:flex-end;">
+            <span class="alt-badge badge-yellow">Decisiones pendientes en cualquier escenario</span>
+          </div>
+        </div>
+        <div class="alt-body">
+          <div>
+            <div class="alt-section-title">Negocio de recambios</div>
+            <ul class="pros-cons-list cons" style="margin-bottom:1rem;">
+              <li>Negocio en declive estructural (commodity), con un horizonte limitado</li>
+              <li>Si se entra en AEROSUR, la desinversión es obligatoria</li>
+              <li>Si no se entra, tampoco tiene futuro relevante</li>
+            </ul>
+            <ul class="pros-cons-list pros">
+              <li>La opción más razonable es el MBO al directivo actual al jubilarse o a su sucesor ya preparado</li>
+              <li>La venta permite recuperar el circulante comprometido (€3M)</li>
+              <li>Negocio pequeño (€100k beneficio): el tiempo del CEO no debería centrarse aquí</li>
+            </ul>
+          </div>
+          <div>
+            <div class="alt-section-title">Negocio inmobiliario</div>
+            <ul class="pros-cons-list pros" style="margin-bottom:1rem;">
+              <li>Activo de reserva estratégica en cualquier escenario (€3M liquidez, €25M valor)</li>
+              <li>€2,5M de beneficio anual con bajo riesgo</li>
+              <li>Puede financiar la salida de socios de Grupo Halcón o apoyar AEROSUR</li>
+            </ul>
+            <ul class="pros-cons-list cons">
+              <li>Depende de un único directivo: la cláusula de autorización para ventas e inversiones debe revisarse</li>
+              <li>La gobernanza con Inés (50/50) debe alinearse: ¿qué quiere la hermana?</li>
+              <li>Usar la liquidez inmobiliaria para financiar riesgo industrial implica mezclar patrimonios de riesgo muy distinto</li>
+            </ul>
+          </div>
+          <div class="alt-action">
+            <div class="alt-action-title">Decisiones clave sobre los negocios complementarios</div>
+            <ol class="alt-action-steps">
+              <li>Recambios: iniciar ya el proceso de MBO con el directivo actual o su sucesor. Recuperar €3M de circulante.</li>
+              <li>Inmobiliaria: clarificar con Inés el proyecto a largo plazo y la política de dividendos frente a reinversión.</li>
+              <li>Decidir si la liquidez inmobiliaria (€3M) se usa para financiar la salida del socio privado de Halcón, o se reserva para necesidades de AEROSUR.</li>
+              <li>Blindar el negocio inmobiliario de la dependencia del directivo gestor: protocolo de sucesión y ampliación de poderes.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prof-note" id="pn-alternativas">
+      <div class="prof-note-header" onclick="toggleProfNote('pn-alternativas')">
+        <span class="prof-note-label">Notas para tutoría — Las cuatro alternativas</span>
+        <span class="prof-note-arrow">▼</span>
+      </div>
+      <div class="prof-note-body">
+        <p>El objetivo de este bloque no es que los participantes "elijan" la alternativa correcta, sino que <strong>argumenten y defiendan una posición desde el rol del consejo</strong>. La posición del consejo no tiene por qué coincidir con la preferencia personal de Guillermo.</p>
+        <p>La <strong>alternativa de venta</strong> suele generar resistencia emocional inicial, pero merece espacio en el debate: ¿a qué precio? ¿a quién? ¿en qué plazo? Plantear la venta como opción real obliga a los participantes a cuantificar el valor de las otras alternativas y comparar.</p>
+        <p>La discusión sobre el <strong>"resto de negocios"</strong> (recambios e inmobiliaria) es transversal: estas decisiones son necesarias en cualquier escenario y a menudo se posponen. El consejo debe empujar a que se tomen con independencia de lo que se decida sobre AEROSUR.</p>
+        <p>Una trampa habitual del debate es centrarse en el atractivo del proyecto y olvidar la pregunta de gobernanza: <em>¿está Guillermo preparado para operar en un consorcio donde no tiene mayoría?</em> Esta pregunta es tan importante como la financiera.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECCIÓN 6: REFLEXIÓN FINAL -->
+<section class="section" id="reflexion" style="padding-top: 4rem;">
+  <hr class="divider">
+  <div class="section-label">06</div>
+  <h2 class="section-title">Preguntas para la reflexión</h2>
+  <p class="section-intro">Cada pregunta tiene una clave de orientación. Despliégala para identificar los vectores de análisis más relevantes antes de la sesión.</p>
+</section>
+
+<div class="section-full">
+  <div class="section">
+    <div class="questions-grid">
+      <div class="question-card">
+        <div class="question-num">01</div>
+        <p class="question-text">¿Es AEROSUR lo que necesita Grupo Halcón o simplemente lo que se le ofrece? ¿Habría alternativas mejores que no se han explorado?</p>
+        <button class="question-key-btn" onclick="toggleKey(this)">
+          <span>Claves de orientación</span><span class="key-arrow">▼</span>
+        </button>
+        <div class="question-key-content">
+          AEROSUR responde a una necesidad real (ascender en la cadena de valor), pero es la única opción que se presenta formalmente. El consejo debe preguntarse si se han evaluado alternativas: alianza con otro TIER-1 diferente, crecimiento orgánico en composite, o venta a un operador que ya tenga la tecnología. La urgencia del proyecto no debe sustituir el rigor del análisis estratégico. <strong>La confusión de Guillermo sugiere que el proceso de reflexión estratégica previa fue insuficiente.</strong>
+        </div>
+      </div>
+      <div class="question-card">
+        <div class="question-num">02</div>
+        <p class="question-text">Guillermo pasa del 55% al 31,6%. Ningún socio tiene mayoría. ¿Cómo se gobierna una empresa con esta estructura? ¿Qué necesita el pacto de socios?</p>
+        <button class="question-key-btn" onclick="toggleKey(this)">
+          <span>Claves de orientación</span><span class="key-arrow">▼</span>
+        </button>
+        <div class="question-key-content">
+          Sin mayoría, Guillermo necesita el apoyo de al menos uno o dos socios para tomar decisiones. El pacto de socios debe definir: quórums de aprobación para decisiones ordinarias y extraordinarias, derechos de veto en materias críticas (endeudamiento, cambio de negocio, ampliaciones de capital), mecanismos de resolución de bloqueos y cláusulas de salida (tag along, drag along). <strong>El mayor riesgo no es el proyecto: es un bloqueo accionarial en un momento crítico de ejecución.</strong>
+        </div>
+      </div>
+      <div class="question-card">
+        <div class="question-num">03</div>
+        <p class="question-text">El plan proyecta pérdidas en el año 1 y CAPEX de €95M en los dos primeros años. ¿Es el plan financiero creíble? ¿Qué supuestos son más frágiles?</p>
+        <button class="question-key-btn" onclick="toggleKey(this)">
+          <span>Claves de orientación</span><span class="key-arrow">▼</span>
+        </button>
+        <div class="question-key-content">
+          Los supuestos más frágiles son: (1) el crecimiento de ventas del 60% en año 2 y 50% en año 3 — muy agresivo en un sector con certificaciones estrictas; (2) la fecha de los contratos Airbus — los retrasos son la norma, no la excepción; (3) el ritmo de aprendizaje en composite — la curva de experiencia puede ser más lenta de lo previsto. El CAPEX de €62M en los dos primeros años con equity de €95M implica que la caja se consumirá rápidamente. <strong>Si los ingresos de Airbus llegan 18 meses tarde, el modelo puede entrar en insolvencia técnica sin los préstamos participativos.</strong>
+        </div>
+      </div>
+      <div class="question-card">
+        <div class="question-num">04</div>
+        <p class="question-text">El operador de automoción que trae el know-how de composite es un socio con el que Guillermo no se siente cómodo. ¿Es un problema de personas o de estructura?</p>
+        <button class="question-key-btn" onclick="toggleKey(this)">
+          <span>Claves de orientación</span><span class="key-arrow">▼</span>
+        </button>
+        <div class="question-key-content">
+          Es principalmente un problema de estructura: el operador de automoción es imprescindible por el <em>know-how</em> que aporta, pero con un 15,8% del capital tiene poder de bloqueo en decisiones que requieran mayorías cualificadas. La incomodidad de Guillermo puede reflejar también una resistencia a compartir el poder de decisión — un patrón que el caso menciona explícitamente. <strong>El consejo debe explorar si la incomodidad es por la persona concreta o por el hecho de no poder imponer decisiones unilateralmente.</strong>
+        </div>
+      </div>
+      <div class="question-card">
+        <div class="question-num">05</div>
+        <p class="question-text">¿Cuál es el rol del consejo vs. el del CEO en esta decisión? ¿Qué debe decidir el consejo y qué debe ejecutar Guillermo?</p>
+        <button class="question-key-btn" onclick="toggleKey(this)">
+          <span>Claves de orientación</span><span class="key-arrow">▼</span>
+        </button>
+        <div class="question-key-content">
+          El consejo debe aprobar o rechazar la dirección estratégica (entrar o no entrar), fijar las condiciones mínimas para que la entrada sea aceptable (pacto de socios, gobierno corporativo, confirmación de contratos), y asegurar que los intereses de todos los accionistas están protegidos. La ejecución — negociar con los socios, contratar directivos, restructurar el accionariado — es responsabilidad del CEO. <strong>Un error frecuente es que el consejo entre en el detalle ejecutivo en lugar de fijar las líneas rojas estratégicas.</strong>
+        </div>
+      </div>
+      <div class="question-card">
+        <div class="question-num">06</div>
+        <p class="question-text">¿Sería un buen momento para vender? ¿Qué compromisos con los empleados de Vitoria y Miranda de Ebro tiene Guillermo más allá del contrato?</p>
+        <button class="question-key-btn" onclick="toggleKey(this)">
+          <span>Claves de orientación</span><span class="key-arrow">▼</span>
+        </button>
+        <div class="question-key-content">
+          El momento para vender es razonablemente bueno: el sector tiene perspectivas positivas, la empresa tiene una valoración de €40M y hay potencial de AEROSUR que un comprador puede aprovechar mejor. El riesgo es vender a un precio que no recoja ese potencial. Respecto a los empleados: existe un compromiso explícito de mantener el empleo en Vitoria 5 años si se entra en AEROSUR, pero ninguna garantía formal en una venta. <strong>El consejo tiene la obligación de reflexionar sobre el impacto en los grupos de interés más allá del retorno financiero a los accionistas.</strong>
+        </div>
+      </div>
+      <div class="question-card">
+        <div class="question-num">07</div>
+        <p class="question-text">Si no entra en AEROSUR, ¿puede sobrevivir el negocio aeronáutico en posición TIER-2/3 durante los próximos 10 años? ¿Con qué condiciones?</p>
+        <button class="question-key-btn" onclick="toggleKey(this)">
+          <span>Claves de orientación</span><span class="key-arrow">▼</span>
+        </button>
+        <div class="question-key-content">
+          Puede sobrevivir, pero con condiciones cada vez más exigentes: renovación de los contratos de los programas actuales (E170, E190, B777, A320), sin garantía de continuidad; inversión en adaptación tecnológica que el grupo no puede financiar solo; y la necesidad de recomprar al socio privado que quiere salir. <strong>El statu quo no es una opción neutra: es una apuesta por un declive gestionado.</strong> La pregunta real es cuánto tiempo tiene Guillermo para tomar una decisión antes de que la posición negociadora se deteriore aún más.
+        </div>
+      </div>
+      <div class="question-card">
+        <div class="question-num">08</div>
+        <p class="question-text">La hermana Inés y el cuñado Ignacio tienen el 50% de la inmobiliaria. ¿Qué derechos tienen sobre la decisión de usar esa liquidez para financiar aventuras de Guillermo?</p>
+        <button class="question-key-btn" onclick="toggleKey(this)">
+          <span>Claves de orientación</span><span class="key-arrow">▼</span>
+        </button>
+        <div class="question-key-content">
+          Inés e Ignacio tienen el 50% del capital y son administradores mancomunados junto a Guillermo: cualquier decisión de inversión o endeudamiento de la inmobiliaria requiere su autorización explícita. Esto significa que Guillermo no puede usar unilateralmente la liquidez de la inmobiliaria para financiar AEROSUR. <strong>Este punto introduce un conflicto familiar-societario que el caso deja en el aire deliberadamente.</strong> El consejo debe señalar que este es uno de los primeros temas a resolver, independientemente de la decisión sobre AEROSUR.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer></footer>
+
+<script>
+// Notas del profesor
+function toggleProfNote(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.toggle('open');
+}
+
+// Claves de reflexión
+function toggleKey(btn) {
+  btn.classList.toggle('open');
+  const content = btn.nextElementSibling;
+  if (content) content.classList.toggle('open');
+}
+
+// Tabs de negocios
+function switchTab(group, name) {
+  const panels = document.querySelectorAll(`[data-tab="${group}"]`);
+  panels.forEach(p => p.classList.remove('active'));
+  const target = document.querySelector(`[data-tab="${group}"][data-name="${name}"]`);
+  if (target) target.classList.add('active');
+
+  // Actualizar botones
+  const btns = document.querySelectorAll('.tab-btn');
+  btns.forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(`'${name}'`)) {
+      b.classList.add('active');
+    } else if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(`'${group}'`)) {
+      b.classList.remove('active');
+    }
+  });
+}
+
+// Tabs de alternativas
+function switchAltTab(name) {
+  document.querySelectorAll('.alt-panel').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById(`alt-${name}`);
+  if (target) target.classList.add('active');
+
+  document.querySelectorAll('.alt-tab-btn').forEach(b => {
+    b.classList.remove('active');
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(`'${name}'`)) {
+      b.classList.add('active');
+    }
+  });
+}
+
+// Collapsibles
+document.querySelectorAll('.collapsible-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    const content = btn.nextElementSibling;
+    if (content) content.classList.toggle('open');
+  });
+});
+
+// Scroll suave con offset de nav
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      const y = target.getBoundingClientRect().top + window.pageYOffset - 64;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
